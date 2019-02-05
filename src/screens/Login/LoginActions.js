@@ -1,8 +1,22 @@
-import { TEST } from "./LoginConstants";
+import { LOGIN_REQUEST_SUCCESS, LOGIN_REQUEST_ERROR } from "./LoginConstants";
 
-export const test = (payload) => {
+export const loginRequestSuccess = (payload) => {
     return {
-        type: TEST,
-        payload
+        type: LOGIN_REQUEST_SUCCESS,
+        payload: {
+            token: payload.Message,
+            status: payload.Status
+        }
+    }
+}
+
+export const loginRequestError = (payload) => {
+    console.log(payload);
+    return {
+        type: LOGIN_REQUEST_ERROR,
+        payload: {
+            token: payload.Message,
+            status: payload.Status
+        }
     }
 }

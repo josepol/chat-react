@@ -1,16 +1,19 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { test } from './LoginActions';
+import LoginFormComponent from './components/loginForm/LoginFormComponent';
+import { loginRequest } from './LoginProvider';
 
 const mapStateToProps = (state, props) => {
     return {
-        test: state.LoginReducer.state
+        status: state.LoginReducer.status,
+        token: state.LoginReducer.token
     }
 }
 
 const mapDispatchToProps = (dispatch, props) => {
     return {
-        updateTest: (value) => dispatch(test(value))
+        loginRequest: loginForm => dispatch(loginRequest(loginForm))
     }
 }
 
@@ -22,27 +25,25 @@ class LoginScreen extends Component {
             test: ''
         }
 
-        this.test = this.test.bind(this);
-        this.testOnChange = this.testOnChange.bind(this);
+        this.loginRequestListener = this.loginRequestListener.bind(this);
     }
 
-    test($event) {
-        this.props.updateTest(this.state.test);
+    componentDidUpdate() {
+        if (this.props && this.props.token) {
+            localStorage.setItem('token', this.props.token);
+            this.props.history.push('/chat');
+        }
     }
 
-    testOnChange($event) {
-        this.setState({
-            test: $event.target.value
-        });
+    loginRequestListener(loginResponse) {
+        this.props.loginRequest(loginResponse);
     }
 
     render() {
         return (
             <Fragment>
                 <h1>Login</h1>
-                <input type="text" name="test" value={this.state.test} onChange={this.testOnChange}/>
-                <button onClick={this.test}>send test</button>
-                <div>test: {this.props.test}</div>
+                <LoginFormComponent loginRequestListener={this.loginRequestListener} />
             </Fragment>
         );
     };

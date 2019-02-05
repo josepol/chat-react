@@ -44,7 +44,6 @@ class ChatScreen extends Component {
             email: 'sdfr',
             message
         }
-        console.log(this.state.websocket, JSON.stringify(messageParsed));
         this.state.websocket.send(JSON.stringify(messageParsed));
     }
 
