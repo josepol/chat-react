@@ -1,21 +1,26 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
-import { test } from './LoginActions';
 import LoginFormComponent from './components/loginForm/LoginFormComponent';
 import { loginRequest } from './LoginProvider';
+import styled from 'styled-components';
 
-const mapStateToProps = (state, props) => {
-    return {
-        status: state.LoginReducer.status,
-        token: state.LoginReducer.token
-    }
-}
+const LoginContainer = styled.div`
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 300px;
+`
 
-const mapDispatchToProps = (dispatch, props) => {
-    return {
-        loginRequest: loginForm => dispatch(loginRequest(loginForm))
-    }
-}
+const LoginFormContainer = styled.div`
+    width: 300px;
+    margin: 5px;
+    text-align: center;
+`
+
+const H1 = styled.h1`
+    color: white;
+    text-align: center;
+`
 
 class LoginScreen extends Component {
 
@@ -41,12 +46,27 @@ class LoginScreen extends Component {
 
     render() {
         return (
-            <Fragment>
-                <h1>Login</h1>
-                <LoginFormComponent loginRequestListener={this.loginRequestListener} />
-            </Fragment>
+            <LoginContainer>
+                <LoginFormContainer>
+                    <H1>Login</H1>
+                    <LoginFormComponent loginRequestListener={this.loginRequestListener} />
+                </LoginFormContainer>
+            </LoginContainer>
         );
     };
+}
+
+const mapStateToProps = (state, props) => {
+    return {
+        status: state.LoginReducer.status,
+        token: state.LoginReducer.token
+    }
+}
+
+const mapDispatchToProps = (dispatch, props) => {
+    return {
+        loginRequest: loginForm => dispatch(loginRequest(loginForm))
+    }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginScreen);

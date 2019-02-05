@@ -11,7 +11,6 @@ export const loginRequestSuccess = (payload) => {
 }
 
 export const loginRequestError = (payload) => {
-    console.log(payload);
     return {
         type: LOGIN_REQUEST_ERROR,
         payload: {

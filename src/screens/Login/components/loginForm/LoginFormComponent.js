@@ -45,8 +45,8 @@ export default class LoginFormComponent extends Component {
             <Fragment>
                 <div>
                     <form onSubmit={this.submitLogin}>
-                        <InputComponent type="text" onChangeListener={this.usernameOnChangeListener} />
-                        <InputComponent type="password" onChangeListener={this.passwordOnChangeListener} />
+                        <InputComponent type="text" placeholder="Username" onChangeListener={this.usernameOnChangeListener} />
+                        <InputComponent type="password" placeholder="Password" onChangeListener={this.passwordOnChangeListener} />
                         <ButtonComponent value="Login" type="submit" />
                     </form>
                 </div>
