@@ -1,4 +1,9 @@
 import React, { Component, Fragment } from 'react';
+import styled from 'styled-components';
+
+import HeaderComponent from './components/HeaderComponent';
+
+const ChatScreenContainer = styled.div``
 
 class ChatScreen extends Component {
     constructor(props) {
@@ -49,13 +54,14 @@ class ChatScreen extends Component {
 
     render() {
         return (
-            <Fragment>
+            <ChatScreenContainer>
+                <HeaderComponent />
                 <h1>Chat</h1>
                 <input type="text" onChange={this.sendMessage} />
                 {this.state.messages && this.state.messages.map((message, i) => (
                     <p key={i}>message: {message.message}</p>
                 ))}
-            </Fragment>
+            </ChatScreenContainer>
         );
     }
 }

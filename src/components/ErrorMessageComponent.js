@@ -16,7 +16,7 @@ export default class ErrorMessageComponent extends Component {
     render() {
         return (
             <ErrorMessage>
-                Invalid credentials
+                {this.props.errorMessage}
             </ErrorMessage>
         );
     }

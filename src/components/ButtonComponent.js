@@ -8,7 +8,6 @@ const Button = styled.button`
     font-weight: bold;
     width: 200px;
     border-radius: 4px;
-    margin-top: 10px;
 `
 
 export default class ButtonComponent extends Component {

@@ -68,7 +68,7 @@ export default class LoginFormComponent extends Component {
                             <InputComponent type="text" placeholder="Username" onChangeListener={this.usernameOnChangeListener} />
                             <InputComponent type="password" placeholder="Password" onChangeListener={this.passwordOnChangeListener} />
                         </InputWrapper>
-                        {loginRequestStatus &&  loginRequestStatus !== '0' && <ErrorMessageComponent />}
+                        {loginRequestStatus && loginRequestStatus === '3' && <ErrorMessageComponent errorMessage="Invalid credentials" />}
                         <ButtonComponent value="Login" type="submit" />
                     </form>
                 </div>
