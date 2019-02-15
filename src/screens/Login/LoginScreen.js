@@ -2,9 +2,10 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import LoginFormComponent from './components/loginForm/LoginFormComponent';
 import { loginRequest } from './LoginProvider';
+import {loginRequestReset } from './LoginActions';
 import styled from 'styled-components';
 
-const LoginContainer = styled.div`
+const LoginScreenContainer = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -12,7 +13,6 @@ const LoginContainer = styled.div`
 `
 
 const LoginFormContainer = styled.div`
-    width: 300px;
     margin: 5px;
     text-align: center;
 `
@@ -31,6 +31,7 @@ class LoginScreen extends Component {
         }
 
         this.loginRequestListener = this.loginRequestListener.bind(this);
+        this.inputTextEditing = this.inputTextEditing.bind(this);
     }
 
     componentDidUpdate() {
@@ -44,14 +45,22 @@ class LoginScreen extends Component {
         this.props.loginRequest(loginResponse);
     }
 
+    inputTextEditing() {
+        this.props.updateLoginRequestStatus();
+    }
+
     render() {
         return (
-            <LoginContainer>
+            <LoginScreenContainer>
                 <LoginFormContainer>
                     <H1>Login</H1>
-                    <LoginFormComponent loginRequestListener={this.loginRequestListener} />
+                    <LoginFormComponent
+                        loginRequestListener={this.loginRequestListener}
+                        loginRequestStatus={this.props.status} 
+                        inputTextEditing={this.inputTextEditing}    
+                    />
                 </LoginFormContainer>
-            </LoginContainer>
+            </LoginScreenContainer>
         );
     };
 }
@@ -65,7 +74,8 @@ const mapStateToProps = (state, props) => {
 
 const mapDispatchToProps = (dispatch, props) => {
     return {
-        loginRequest: loginForm => dispatch(loginRequest(loginForm))
+        loginRequest: loginForm => dispatch(loginRequest(loginForm)),
+        updateLoginRequestStatus: () => dispatch(loginRequestReset())
     }
 }
 

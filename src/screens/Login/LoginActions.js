@@ -19,3 +19,13 @@ export const loginRequestError = (payload) => {
         }
     }
 }
+
+export const loginRequestReset = () => {
+    return {
+        type: LOGIN_REQUEST_ERROR,
+        payload: {
+            token: undefined,
+            status: undefined
+        }
+    }
+}

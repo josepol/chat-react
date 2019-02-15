@@ -1,4 +1,15 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
+
+const Button = styled.button`
+    padding: 10px;
+    background-color: white;
+    border: none;
+    font-weight: bold;
+    width: 200px;
+    border-radius: 4px;
+    margin-top: 10px;
+`
 
 export default class ButtonComponent extends Component {
     constructor(props) {
@@ -8,9 +19,9 @@ export default class ButtonComponent extends Component {
     render() {
         const { type, value } = this.props;
         return (
-            <div>
-                <button type={type}>{value}</button>
-            </div>
+            <>
+                <Button type={type}>{value}</Button>
+            </>
         );
     }
 }
