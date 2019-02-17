@@ -5,7 +5,8 @@ export const loginRequestSuccess = (payload) => {
         type: LOGIN_REQUEST_SUCCESS,
         payload: {
             token: payload.Message,
-            status: payload.Status
+            status: payload.Status,
+            username: payload.Username
         }
     }
 }

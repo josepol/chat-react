@@ -58,7 +58,7 @@ export default class HeaderComponent extends Component {
                 <ProfileData>
                     <ProfileIconWrapper><Icon className="fas fa-user"></Icon></ProfileIconWrapper>
                     <ProfileNameWrapper>
-                        <ProfileName>Jose</ProfileName>
+                        <ProfileName>{this.props.username}</ProfileName>
                     </ProfileNameWrapper>
                 </ProfileData>
                 <RightMenu><ButtonComponent value={(<Icon className="fas fa-sign-out-alt"></Icon>)}/></RightMenu>
